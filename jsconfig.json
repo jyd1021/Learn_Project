@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@/*":["src/*"]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+
+}
+//src文件的简写
