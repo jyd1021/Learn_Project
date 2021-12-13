@@ -41,7 +41,7 @@
                         />
                         <button class="sui-btn btn-xlarge btn-danger" 
                         type="button" 
-                        @click="goSear"
+                        @click="goSearch"
                         >搜索</button>
                     </form>
                 </div>
