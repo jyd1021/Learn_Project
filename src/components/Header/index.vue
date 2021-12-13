@@ -34,8 +34,15 @@
                 </h1>
                 <div class="searchArea">
                     <form action="###" class="searchForm">
-                        <input type="text" id="autocomplete" class="input-error input-xxlarge" />
-                        <button class="sui-btn btn-xlarge btn-danger" type="button" @click="goSear">搜索</button>
+                        <input type="text" 
+                        id="autocomplete" 
+                        class="input-error input-xxlarge" 
+                        v-model="keyword"
+                        />
+                        <button class="sui-btn btn-xlarge btn-danger" 
+                        type="button" 
+                        @click="goSear"
+                        >搜索</button>
                     </form>
                 </div>
             </div>
@@ -46,9 +53,40 @@
 <script>
     export default {
         name:'',
+        data() {
+            return {
+                keyword:'',
+            }
+        },
         methods: {
             goSearch(){
-                this.$router.push('/search')
+                //路由传参
+                //第一种：字符串传参
+                //this.$router.push("/search/" + this.keyword + "?k=" + this.keyword.toUpperCase())
+                //第二种：模板字符串
+                //this.$router.push(`/search/${this.keyword}?k=${this.keyword.toUpperCase()}`)
+                //第三种：对象传参
+                this.$router.push({name:"search",params:{keyword:this.keyword},query:{k:this.keyword.toUpperCase()}})
+
+
+                //面试题1：路由传递参数（对象写法）path是否可以结合params参数一起使用
+                //答：路由跳转传参的时候，对象的写法可以是name，path形式，但是需要注意的是，path的这种写法不可以与parmas一起使用
+                //this.$router.push({path:'/search', params:{keyword:this.keyword},query:{k:this.keyword.toUpperCase()}})
+                
+                //面试2:如何指定params参数可传可不传
+                //配置时占位了，但不传参，路径会出问题 
+                //在配置路由时，在占位的后面加 一个 ？
+                //this.$router.push({name:"search",query:{k:this.keyword.toUpperCase()}})
+
+                //面试3：parmas 参数可以传递也可以不传递，但是如果传递时空川，如何解决？
+                //使用undefined解决：parmas参数可以传递、不传递（空的字符串）
+                //this.$router.push({name:"search",params:{keyword:' '|| undefined},query:{k:this.keyword.toUpperCase()}})
+
+                //面试4：路由组件能不能传递props数据
+                //可以的:三种写法
+                //this.$router.push({name:"search",params:{keyword:this.keyword},query:{k:this.keyword.toUpperCase()}})
+
+
             }
         },
     }
