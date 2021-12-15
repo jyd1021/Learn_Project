@@ -7,6 +7,11 @@ Vue.component( TypeNav.name,TypeNav )
 //引入路由
 import router from '@/router'
 
+//测试接口
+import {reqCategeoryList} from '@/api/index'
+reqCategeoryList();
+
+
 Vue.config.productionTip = false
 
 new Vue({
